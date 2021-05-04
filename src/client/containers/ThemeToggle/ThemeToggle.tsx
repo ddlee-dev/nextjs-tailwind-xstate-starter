@@ -21,15 +21,18 @@ const darkToast = () =>
 const theme = {
   default: {
     dot: 'dot absolute left-0 w-[22px] h-[22px] shadow rounded-full transition duration-150 ease-in-out transform',
-    background: 'relative block w-[50px] h-[24px] rounded-full transition duration-150 ease-in-out'
+    background: 'relative block w-[50px] h-[24px] rounded-full transition duration-150 ease-in-out',
+    icon: 'absolute top-[-1px]'
   },
   checked: {
-    dot: 'translate-x-[26px] bg-gray-100',
-    background: 'bg-[#52D669] border border-solid border-transparent'
+    dot: 'translate-x-[26px] bg-white',
+    background: 'bg-[#736000] border border-solid border-gray-300',
+    icon: 'left-[4px]'
   },
   unchecked: {
-    dot: 'translate-x-0 bg-gray-50',
-    background: 'bg-gray-100 border border-solid border-gray-300'
+    dot: 'translate-x-0 bg-white',
+    background: 'bg-gray-700 border border-solid border-gray-300',
+    icon: 'right-[4px]'
   }
 };
 
@@ -38,8 +41,7 @@ const ThemeToggle: FC = () => {
   const [checked, updateCheck] = useState(false);
   const [uuid, updateUuid] = useState<string | undefined>(undefined);
   const dotRef = useRef(null);
-  const dotStyles = checked ? theme.checked.dot : theme.unchecked.dot;
-  const backgroundStyles = checked ? theme.checked.background : theme.unchecked.background;
+  const checkKey = checked ? 'checked' : 'unchecked';
 
   useEffect(() => {
     if (!uuid) {
@@ -67,8 +69,9 @@ const ThemeToggle: FC = () => {
   return (
     <div className="flex items-center justify-center w-auto">
       <label className="flex items-center cursor-pointer" htmlFor={uuid}>
-        <div className={`${theme.default.background} ${backgroundStyles}`}>
-          <div className={`ring-offset-1 ${theme.default.dot} ${dotStyles}`} ref={dotRef} />
+        <div className={`${theme.default.background} ${theme[checkKey].background}`}>
+          <span className={`${theme.default.icon} ${theme[checkKey].icon}`} aria-hidden="true">{!checked ? '🌙' :  '☀️'}</span>
+          <div className={`ring-offset-1 ${theme.default.dot} ${theme[checkKey].dot}`} ref={dotRef} />
           <input
             type="checkbox"
             className="w-full h-full sr-only m-0"
