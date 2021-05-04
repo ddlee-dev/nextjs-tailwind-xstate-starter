@@ -1,5 +1,5 @@
 import { createMachine } from 'xstate';
-import { setThemeToLocalStorage } from '@/utils/style';
+import { setThemeToLocalStorage } from '@/utils/theme';
 
 type ThemeContext = Record<string, unknown>;
 

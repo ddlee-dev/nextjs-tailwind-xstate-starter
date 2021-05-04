@@ -1,7 +1,7 @@
 import { FC, ReactNode, ButtonHTMLAttributes } from 'react';
 
 const theme: { [key: string]: string } = {
-  default: 'border-gray-300 bg-gray-200 hover:bg-gray-300 hover:shadow-md text-gray-800',
+  default: 'border-gray-300 bg-gray-200 hover:bg-gray-300 hover:shadow-md text-gray-800 focus:outline-none focus:ring focus:border-[#7BAAFA]',
   primary: 'bg-blue-600 hover:bg-blue-700 hover:shadow-md text-white',
   secondary: 'bg-red-600 hover:bg-red-700 hover:shadow-md text-white'
 };
